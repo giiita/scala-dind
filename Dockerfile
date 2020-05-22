@@ -13,14 +13,15 @@
 FROM ubuntu:20.10
 
 # Env variables
+ENV DEBCONF_NOWARNINGS yes
 ENV JAVA_VERSION 11.0.7
 ENV SCALA_VERSION 2.13.2
 ENV SBT_VERSION 1.3.10
 
 # Install Java
 RUN \
-  apt update && \
-  apt install -y wget curl openjdk-11-jdk-headless && \
+  apt-get update && \
+  apt-get install -y wget curl openjdk-11-jdk-headless && \
   java -version
 
 # Install Scala
@@ -38,7 +39,7 @@ RUN \
 
 # Install Docker & DockerCompose
 RUN \
-  apt install -y docker-compose
+  apt-get install -y docker-compose
 
 
 ENV PATH ~/scala-$SCALA_VERSION/bin:/root/sbt/bin:$PATH

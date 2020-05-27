@@ -42,7 +42,7 @@ RUN \
   apt-get install -y docker-compose
 
 
-ENV PATH ~/scala-$SCALA_VERSION/bin:/root/sbt/bin:$PATH
+ENV PATH /root/scala-$SCALA_VERSION/bin:/root/sbt/bin:$PATH
 
 RUN sbt sbtVersion
 

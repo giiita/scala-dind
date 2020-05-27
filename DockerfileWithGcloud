@@ -1,0 +1,24 @@
+#
+# Dockerfile: scala-dind:0.1 with gcloud 
+#
+# https://github.com/giiita/scala-dind
+#
+
+# Pull base image
+FROM giiita/scala-dind:0.1
+
+# Install Java
+RUN \
+  apt-get update && \
+  apt-get install -y python
+
+RUN \
+  curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz && \
+  mkdir -p /usr/local/gcloud && \
+  tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz && \
+  /usr/local/gcloud/google-cloud-sdk/install.sh
+
+ENV PATH /usr/local/gcloud/google-cloud-sdk/bin:$PATH
+
+# Define working directory
+WORKDIR /root
